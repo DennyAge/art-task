@@ -1,7 +1,6 @@
 Artworks List Application
-
-https://art-task-ruddy.vercel.app
 -
+https://art-task-ruddy.vercel.app
 
 **Technologies:**
 Next.js
