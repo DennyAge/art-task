@@ -30,7 +30,7 @@ const ArtworkCardList = ({ artworks }: Props) => {
 
   return (
     <div className="flex flex-col gap-2 md:hidden ">
-      <div className="grid grid-cols-5 gap-2">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
         {mobileSorterTitle.map((item) => (
           <div
             key={item.key}
@@ -61,7 +61,7 @@ const ArtworkCardList = ({ artworks }: Props) => {
               />
             </div>
             <div className="flex flex-col gap-1 w-2/3 sm:w-full">
-              <div className="flex flex-wrap items-center justify-end gap-2 ">
+              <div className="flex flex-wrap items-center justify-end gap-2 mb-2">
                 <StatusBadge status={artwork.status} />
                 <VisibilityBadge visible={artwork.visibility} />
                 <DocsBadge docs={artwork.documents_number} />

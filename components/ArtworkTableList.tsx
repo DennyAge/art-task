@@ -41,16 +41,21 @@ const ArtworkTableList = ({ artworks }: Props) => {
                   "py-[20px] px-[10px] text-left text-sm font-medium leading-[20px] text-default-600",
                   item.key === "artwork_name" && "max-w-[140px]",
                   item.key === "artist_name" && "max-w-[200px]",
-                  item.key === "updated" && "text-default-900",
+                  item.key === "date_updated" && "text-default-900",
                 )}
               >
-                <span className="inline-flex items-center gap-2">
+                <span className="inline-flex items-center gap-2 ">
                   {item.title}
                   {!["status", "documents_number"].includes(item.key) &&
                     index !== 0 && (
                       <SortBtn
                         isActive={activeSorter?.field === item.key}
                         onClick={() => handleSorterChange(item.key)}
+                        color={
+                          item.key === "date_updated"
+                            ? "bg-default-900"
+                            : "bg-default-600"
+                        }
                       />
                     )}
                 </span>
@@ -64,40 +69,40 @@ const ArtworkTableList = ({ artworks }: Props) => {
               key={artwork.id}
               className="text-sm bg-default-200 text-default-900 font-medium cursor-pointer shadow-sm text-left  hover:bg-default-100"
             >
-              <td className="rounded-s-lg pl-3">
+              <td className="rounded-s-lg pl-3 w-[72px]">
                 <div className="w-[55px]">
                   <Image
                     src={`/images/${artwork.main_photo.transformations[1].filename_disk}`}
                     alt={artwork.artwork_name}
-                    width={50}
-                    height={50}
+                    width={48}
+                    height={48}
                     priority
                     className="rounded-md"
                   />
                 </div>
               </td>
-              <td className="py-[26px] px-[10px] text-left w-full max-w-[137px] flex items-center gap-2">
+              <td className="py-[24px] px-[10px] text-left w-full h-full max-w-[137px] flex items-center gap-x-2">
                 <span className="truncate">{artwork.artwork_name}</span>
                 {artwork.has_notifications && (
-                  <div className="w-[8px] h-[8px] bg-indigo-400 rounded-lg"></div>
+                  <span className="w-[8px] h-[8px] bg-indigo-400 rounded-lg" />
                 )}
               </td>
-              <td className="py-[26px] px-[10px] text-left max-w-[200px] truncate">
+              <td className="py-[24px] px-[10px] text-left leading-[20px] max-w-[200px] truncate">
                 {artwork.artist_name}
               </td>
-              <td className="py-[26px] px-[10px] text-left w-max">
+              <td className="py-[24px] px-[10px] text-left w-max">
                 {formatSum(artwork.views)}
               </td>
-              <td className="py-[26px] px-[10px] text-left w-max">
+              <td className="py-[24px] px-[10px] text-left w-max">
                 {artwork.creation_year}
               </td>
-              <td className="py-[26px] px-[10px] text-left w-max ">
+              <td className="py-[24px] px-[10px] text-left w-max ">
                 {<StatusBadge status={artwork.status} />}
               </td>
-              <td className="py-[26px] px-[10px] text-left w-max ">
+              <td className="py-[24px] px-[10px] text-left w-max ">
                 <VisibilityBadge visible={artwork.visibility} />
               </td>
-              <td className="py-[26px] px-[10px] text-left  w-max flex items-center gap-1">
+              <td className="py-[24px] px-[10px] text-left w-max flex items-center gap-x-1">
                 <Image
                   src="/icons/usdc.svg"
                   alt="usdc"
@@ -107,10 +112,10 @@ const ArtworkTableList = ({ artworks }: Props) => {
                 />
                 <span>{formatSum(artwork.price)}</span>
               </td>
-              <td className="py-[26px] px-[10px] text-left w-max ">
+              <td className="py-[24px] px-[10px] text-left w-max">
                 <DocsBadge docs={artwork.documents_number} />
               </td>
-              <td className="py-[26px] px-[10px] text-left  w-max  rounded-e-lg">
+              <td className="py-[24px] px-[10px] text-left  w-max rounded-e-lg">
                 {artwork.date_updated ? formatDate(artwork.date_updated) : "-"}
               </td>
             </tr>
