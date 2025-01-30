@@ -36,7 +36,7 @@ const ArtworkCardList = ({ artworks }: Props) => {
           className="bg-default-200 w-full rounded-lg cursor-pointer hover:bg-default-100"
         >
           <div className="flex gap-2 p-4">
-       <div  className="flex-1 sm:flex-none">
+       <div  className="flex-1  my-auto h-full sm:flex-none ">
            <Image
                src={`/images/${artwork.main_photo.transformations[1].filename_disk}`}
                alt={artwork.artwork_name}
