@@ -12,7 +12,7 @@ Setup and Running
 git clone https://github.com/DennyAge/artworks-list
 ```
 ```bash
-cd artworks-list
+cd art-task
 ```
 
 **Install dependencies:**
