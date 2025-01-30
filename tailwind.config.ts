@@ -8,9 +8,15 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {},
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        default: {
+          100: "#F5F5F5",
+          200: "#E9E9E9",
+          350: "#CCCCCC",
+          600: "#525252",
+          900: "#171717",
+        },
       },
     },
   },
