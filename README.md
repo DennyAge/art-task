@@ -9,7 +9,7 @@ Setup and Running
 -
 **Clone the repository:**
 ```bash
-git clone https://github.com/DennyAge/artworks-list
+git clone https://github.com/DennyAge/art-task
 ```
 ```bash
 cd art-task
