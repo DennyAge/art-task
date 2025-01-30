@@ -1,7 +1,7 @@
 "use client";
-
+//core
 import { useEffect, useState } from "react";
-
+//components
 import ArtworkTableList from "@/components/ArtworkTableList";
 import ArtworkCardList from "@/components/ArtworkCardList";
 import Loader from "@/components/Loader";

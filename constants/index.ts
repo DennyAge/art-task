@@ -10,7 +10,7 @@ export const headTitle = [
   { title: "Docs", key: "documents_number" },
   { title: "Updated", key: "date_updated" },
 ];
-export const mobileFilterTitle = [
+export const mobileSorterTitle = [
   { title: "Artwork ", key: "artwork_name" },
   { title: "Artist ", key: "artist_name" },
   { title: "Views", key: "views" },

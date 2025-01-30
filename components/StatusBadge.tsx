@@ -17,6 +17,7 @@ const StatusBadge = ({ status }: Props) => {
   let badgeTextColor = "";
 
   switch (status) {
+    case null:
     case "draft":
       badgeText = "Draft";
       badgeColor = "bg-default-350";
@@ -42,15 +43,11 @@ const StatusBadge = ({ status }: Props) => {
       badgeColor = "bg-[#CBD5E1]";
       badgeTextColor = "text-[#1E293B]";
       break;
-    case null:
-      badgeText = "Draft";
-      badgeColor = "bg-default-350";
-      badgeTextColor = "text-default-900";
-      break;
   }
 
   return (
     <div
+      aria-label={`Status: ${badgeText}`}
       className={cn(
         badgeColor,
         badgeTextColor,

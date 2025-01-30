@@ -8,7 +8,10 @@ const DocsBadge = ({ docs }: Props) => {
   return (
     <>
       {docs > 0 ? (
-        <div className="flex items-center justify-center gap-2 py-1 rounded-md font-normal leading-[16px] bg-indigo-300/50 text-indigo-800 text-xs w-[48px]">
+        <div
+          aria-label={`Documents: ${docs}`}
+          className="flex items-center justify-center gap-2 py-1 rounded-md font-normal leading-[16px] bg-indigo-300/50 text-indigo-800 text-xs w-[48px]"
+        >
           <Image src="/icons/File.svg" alt="docs" width={16} height={16} />
           {docs}
         </div>

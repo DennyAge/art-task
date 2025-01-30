@@ -1,15 +1,18 @@
 "use client";
 
+//core
+import { useMemo } from "react";
 import Image from "next/image";
-
+//helpers
+import useSort from "@/hooks/useSort";
 import { cn, formatDate, formatSum, sortArtworks } from "@/lib/utils";
 import { headTitle } from "@/constants";
-import useSort from "@/hooks/useSort";
-
+//components
 import SortBtn from "@/components/SortBtn";
 import StatusBadge from "@/components/StatusBadge";
 import VisibilityBadge from "@/components/VisibilityBadge";
 import DocsBadge from "@/components/DocsBadge";
+import Loader from "@/components/Loader";
 
 interface Props {
   artworks: Artwork[];
@@ -17,7 +20,14 @@ interface Props {
 
 const ArtworkTableList = ({ artworks }: Props) => {
   const { activeSorter, handleSorterChange } = useSort();
-  const sortedArtworks = sortArtworks(artworks, activeSorter);
+  const sortedArtworks = useMemo(
+    () => sortArtworks(artworks, activeSorter),
+    [artworks, activeSorter],
+  );
+
+  if (!artworks.length) {
+    return <Loader />;
+  }
 
   return (
     <div className="hidden md:block overflow-x-auto pb-3">
@@ -27,28 +37,22 @@ const ArtworkTableList = ({ artworks }: Props) => {
             {headTitle.map((item, index) => (
               <th
                 key={item.key}
-                className={cn([
+                className={cn(
                   "py-[20px] px-[10px] text-left text-sm font-medium leading-[20px] text-default-600",
                   item.key === "artwork_name" && "max-w-[140px]",
                   item.key === "artist_name" && "max-w-[200px]",
                   item.key === "updated" && "text-default-900",
-                ])}
+                )}
               >
                 <span className="inline-flex items-center gap-2">
                   {item.title}
-                  <div
-                    className={cn([
-                      index === 0 && "hidden",
-                      item.key === "status" && "hidden",
-                      item.key === "documents_number" && "hidden",
-                    ])}
-                  >
-                    <SortBtn
-                      key={item.key}
-                      isActive={activeSorter?.field === item.key}
-                      onClick={() => handleSorterChange(item.key)}
-                    />
-                  </div>
+                  {!["status", "documents_number"].includes(item.key) &&
+                    index !== 0 && (
+                      <SortBtn
+                        isActive={activeSorter?.field === item.key}
+                        onClick={() => handleSorterChange(item.key)}
+                      />
+                    )}
                 </span>
               </th>
             ))}
@@ -67,7 +71,8 @@ const ArtworkTableList = ({ artworks }: Props) => {
                     alt={artwork.artwork_name}
                     width={50}
                     height={50}
-                    className="rounded-md w-[50px] h-[50px]"
+                    priority
+                    className="rounded-md"
                   />
                 </div>
               </td>
